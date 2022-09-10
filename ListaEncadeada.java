@@ -34,7 +34,7 @@ public class ListaEncadeada {
     }
 
     public void clear(){
-        
+        this.inicio = null;
     }
 
     public void exibirLista(){
