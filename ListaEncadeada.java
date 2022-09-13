@@ -33,7 +33,7 @@ public class ListaEncadeada {
         }
     }
 
-    public void clear(){
+    public void limparLista(){
         this.inicio = null;
     }
 
