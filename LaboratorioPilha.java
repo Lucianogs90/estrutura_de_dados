@@ -15,7 +15,7 @@ public class LaboratorioPilha {
 
         for (String caractere : token) {
             if (caractere.matches("[\\)\\]\\}]") && pilha.size() == 0) {
-                System.out.println("Tá errado");
+                System.out.println("Há problemas na abertura ou fechamento desta sequência");
                 return;
             } else if (caractere.matches("[\\(\\[\\{]")) {
                 pilha.push(caractere);
@@ -30,9 +30,9 @@ public class LaboratorioPilha {
         }
 
         if(!pilha.isEmpty()){
-            System.out.println("Tá errado");
+            System.out.println("Há problemas na abertura ou fechamento desta sequência");
         }else{
-            System.out.println("Tá certo");
+            System.out.println("Tudo correto com a abertura e fechamento desta sequência");
         }
     }
 }
