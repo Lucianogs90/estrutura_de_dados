@@ -1,76 +1,44 @@
-import java.util.EmptyStackException;
-import java.util.Stack;
+/** 
+ * Interface para uma pilha: uma coleção de objetos 
+ * que são inseridos e removidos de acordo com o princípio de o último que entra é o 
+ * primeiro que sai. Esta interface inclui os principais métodos de Java.util.Stack 
+ * 
+ * @author Roberto Tamassia 
+ * @author Michael Goodrich
+ * @see FullStackException
+ * */
 
-import javax.lang.model.element.Element;
+public interface Pilha<E>{
+    /** 
+     * Retorna o número de elementos na pilha.
+     * @return número de elementos na pilha.
+     **/
 
-/**
- * * Implementação da interface Stack usando um arranjo de tamanho fixo.
- * Uma exceção é lançada ao tentar realizar uma operação de push quando o
- * tamanho da pilha é igual ao tamanho do arranjo. Esta classe inclui os
- * principais
- * métodos da classe Java predefinida java.util.Stack.
- */
-public class Pilha<E> implements Stack<E> {
-    protected int capacity; // capacidade real do array da pilha
-    public static final int CAPACITY = 500; // capacidade padrão do array da pilha
-    protected E S[]; // array genérico usado para implementar a pilha
-    protected int top = -1; // índice para o topo da pilha
+    public int size();
 
-    public Pilha() {
-        this(CAPACITY);
-    }
+    /** 
+     * Indica quando a pilha está vazia. 
+     * @return true se a pilha é vazia, false em caso contrário. 
+     **/
+    public boolean isEmpty();
 
-    public Pilha(int cap) {
-        this.capacity = cap;
-        this.S = (E[]) new Object[capacity]; // Está ok este aviso
-    }
+    /** 
+     * Inspeciona o elemento no topo da pilha. 
+     * @return o elemento do topo da pilha. 
+     * @exception EmptyStackException se a pilha estiver vazia. 
+     **/
+    public E top();
 
-    public int size() {
-        return (top + 1);
-    }
+    /** 
+     * Insere um elemento no topo da pilha. 
+     * @param element a ser inserido. 
+     **/
+    public void push(E element);
 
-    public boolean isEmpty() {
-        return (top < 0);
-    }
-
-    public void push(E element) throws FullStackException {
-        if (this.size() == capacity) {
-            throw new FullStackException("A pilha está cheia!");
-        }
-        S[++top] = element;
-    }
-
-    public E top() throws EmptyStackException {
-        if (isEmpty()) {
-            throw new EmptyStackException();
-        }
-        return S[top];
-    }
-
-    public E pop() throws EmptyStackException {
-        if (isEmpty()) {
-            throw new EmptyStackException();
-        }
-        E element = S[top];
-        S[top--] = null; // exclui a referência ao elemnto que ocupava a posição top
-        return element;
-    }
-
-    public String toString() {
-        String s;
-        s = "[";
-        if (this.size() > 0) {
-            s += S[0];
-        }
-        if (this.size() > 1) {
-            for (int i = 0; i <= this.size() - 1; i++) {
-                s += ", " + S[i];
-            }
-        }
-
-        s += "]";
-
-        return s;
-    }
-
+    /** 
+     * Remove o elemento do topo da pilha. 
+     * @return elemento a ser removido. 
+     * @exception EmptyStackException se a pilha estiver vazia. 
+     **/
+    public E pop();
 }
