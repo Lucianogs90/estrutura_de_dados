@@ -1,3 +1,4 @@
+package pilhas;
 
 /**
  * * Exceção de tempo de execução lançada quando alguém tenta executar uma

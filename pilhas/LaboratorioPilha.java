@@ -1,3 +1,4 @@
+package pilhas;
 public class LaboratorioPilha {
 
     public boolean symbolMatch(String texto) {

@@ -1,3 +1,4 @@
+package listas_encadeadas;
 public class ListaEncadeada {
     public static class No{
         public int valor;

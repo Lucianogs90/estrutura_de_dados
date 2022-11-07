@@ -1,3 +1,4 @@
+package pilhas;
 /** 
  * Interface para uma pilha: uma coleção de objetos 
  * que são inseridos e removidos de acordo com o princípio de o último que entra é o 

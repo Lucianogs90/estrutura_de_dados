@@ -1,4 +1,7 @@
+package pilhas;
 import java.util.EmptyStackException;
+
+import filas.EmptyQueueException;
 
 /**
  * * Implementação da interface Stack usando um arranjo de tamanho fixo.
@@ -30,9 +33,9 @@ public class PilhaArray<E> implements Pilha<E> {
         return (top < 0);
     }
 
-    public void push(E element) throws FullStackException {
+    public void push(E element) throws EmptyQueueException {
         if (this.size() == capacity) {
-            throw new FullStackException("A pilha está cheia!");
+            throw new EmptyQueueException("A pilha está cheia!");
         }
         S[++top] = element;
     }
