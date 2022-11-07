@@ -26,7 +26,6 @@ public class LaboratorioFila {
 
         /*
          * =============================================================================
-         * =
          */
 
         FilaArray<Integer> fila2 = new FilaArray<Integer>(11);
