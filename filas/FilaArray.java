@@ -55,7 +55,7 @@ public class FilaArray<E> implements Fila<E> {
     }
     
     public void enqueue(E element) throws FullQueueException {
-        if (this.size() == capacity) {
+        if (this.size() == capacity - 1) {
             throw new FullQueueException("A fila está cheia!");
         }
 
