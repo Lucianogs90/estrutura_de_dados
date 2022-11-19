@@ -9,19 +9,19 @@ package filas;
  * Esta classe inclui os principais métodos de uma fila
  */
 public class FilaArray<E> implements Fila<E> {
-    protected int capacity; // capacidade real do array da fila
-    public static final int CAPACITY = 500; // capacidade padrão do array da fila
+    protected int capacidade; // capacidade real do array da fila
+    public static final int CAPACIDADE = 500; // capacidade padrão do array da fila
     protected E S[]; // array genérico usado para implementar a fila
     protected int fim = 0; // índice para o final da fila
     protected int inicio = 0; // índice para o início da fila
 
     public FilaArray() {
-        this(CAPACITY);
+        this(CAPACIDADE);
     }
 
     public FilaArray(int capacity) {
-        this.capacity = capacity;
-        this.S = (E[]) new Object[this.capacity]; // Está ok este aviso
+        this.capacidade = capacity;
+        this.S = (E[]) new Object[this.capacidade]; // Está ok este aviso
     }
 
     public boolean isEmpty() {
@@ -29,7 +29,7 @@ public class FilaArray<E> implements Fila<E> {
     }
 
     public int size() {
-        return ((capacity - inicio + fim) % capacity);
+        return ((capacidade - inicio + fim) % capacidade);
     }
     
     public E front() throws EmptyQueueException {
@@ -49,18 +49,18 @@ public class FilaArray<E> implements Fila<E> {
         
         S[inicio] = null; // exclui a referência ao elemnto que ocupava a posição inicial
         
-        inicio = (inicio + 1) % this.capacity; 
+        inicio = (inicio + 1) % this.capacidade; 
         
         return element;
     }
     
     public void enqueue(E element) throws FullQueueException {
-        if (this.size() == capacity - 1) {
+        if (this.size() == capacidade - 1) {
             throw new FullQueueException("A fila está cheia!");
         }
 
         S[fim] = element;
 
-        fim = (fim + 1) % this.capacity;
+        fim = (fim + 1) % this.capacidade;
     }
 }
