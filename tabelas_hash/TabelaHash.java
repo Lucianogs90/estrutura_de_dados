@@ -61,13 +61,13 @@ public class TabelaHash {
 
     // Método que remove todos os pares de chave-valor
     public void clear() {
-        for (TabelaEntrada tabelaEntrada : tabela) {
-            tabelaEntrada = null;
+        for (int i = 0; i < tabela.length; i++) {
+            tabela[i] = null;
         }
     }
 
     // Método que remove o mapeamento especificado pela chave e o retorna
-    public String remove(String chave) {
+    public String remove(String chave) throws Exception{
         // Calcula o índice na tabela a partir do hash da chave
         int hash = Math.abs(chave.hashCode());
         int indice = hash % tabela.length;
@@ -87,15 +87,16 @@ public class TabelaHash {
         // ou se não encontrou a chave e está em um vazio
         tabela[indice] = null;
 
-        return "(" + entrada.chave + ": " + entrada.valor + ")";
+        return indice + ": " + entrada.chave + " --> " + entrada.valor;
+
     }
 
     // Método que retorna o número de mapeamentos neste mapa
-    public int size(){
+    public int size() {
         int tamanho = 0;
 
         for (TabelaEntrada tabelaEntrada : tabela) {
-            if (tabelaEntrada != null){
+            if (tabelaEntrada != null) {
                 tamanho++;
             }
         }
@@ -104,7 +105,7 @@ public class TabelaHash {
     }
 
     // Método que informa se a TabelaHash está vazia
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return this.size() == 0;
     }
 }
