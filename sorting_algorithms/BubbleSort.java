@@ -1,8 +1,8 @@
 package sorting_algorithms;
 
-public class BubleSort {
+public class BubbleSort {
 
-    public BubleSort(int[] numeros) {
+    public BubbleSort(int[] numeros) {
         int temp;
         for (int i = 0; i < numeros.length; i++) {
             for (int j = 0; j < numeros.length - 1; j++) {
@@ -21,7 +21,7 @@ public class BubleSort {
     public static void main(String[] args) {
         int[] numeros = { 1, 5, 3, 2, 4 };
         
-        new BubleSort(numeros);
+        new BubbleSort(numeros);
 
     }
 }
