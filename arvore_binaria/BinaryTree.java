@@ -61,8 +61,8 @@ public class BinaryTree {
     int leftHeight = getHeight(root.getLeftNode()); // Calcula a altura da subarvore esquerda
     int rightHeight = getHeight(root.getRightNode()); // Calcula a altura da subarvore direita
     if (leftHeight > rightHeight) { // Retorna a maior altura
-      return leftHeight + 1;  // +1 para contar a raiz
-    } else {  // Retorna a maior altura
+      return leftHeight + 1; // +1 para contar a raiz
+    } else { // Retorna a maior altura
       return rightHeight + 1; // +1 para contar a raiz
     }
   }
@@ -81,22 +81,39 @@ public class BinaryTree {
   }
 
   public void printTree() {
-    if (this.isEmpty()){ // Se a raiz for nula, a árvore está vazia
+    if (this.isEmpty()) { // Se a raiz for nula, a árvore está vazia
       System.out.println("Árvore vazia"); // Imprime uma mensagem
-    }
-    else{  // Se a árvore não estiver vazia
+    } else { // Se a árvore não estiver vazia
       printTree(this.root); // Chama o método recursivo para imprimir a árvore
     }
   }
 
   private void printTree(Node node) {
     if (node.getLeftNode() != null) { // Se o nó esquerdo não for nulo, chama o método recursivamente
-      printTree(node.getLeftNode());  // Imprime a subarvore esquerda
+      printTree(node.getLeftNode()); // Imprime a subarvore esquerda
     }
     if (node.getRightNode() != null) { // Se o nó direito não for nulo, chama o método recursivamente
       printTree(node.getRightNode()); // Imprime a subarvore direita
     }
     System.out.println("Nó: " + node.getValue()); // Imprime o valor do nó
+  }
+
+  public void printSortedTree() {
+    if (this.isEmpty()) { // Se a raiz for nula, a árvore está vazia
+      System.out.println("Árvore vazia"); // Imprime uma mensagem
+    } else { // Se a árvore não estiver vazia
+      printSortedTree(this.root); // Chama o método recursivo para imprimir a árvore
+    }
+  }
+  
+  private void printSortedTree(Node node) {
+    if (node.getLeftNode() != null) { // Se o nó esquerdo não for nulo, chama o método recursivamente
+      printSortedTree(node.getLeftNode()); // Imprime a subarvore esquerda
+    }
+    System.out.println("Nó: " + node.getValue()); // Imprime o valor do nó
+    if (node.getRightNode() != null) { // Se o nó direito não for nulo, chama o método recursivamente
+      printSortedTree(node.getRightNode()); // Imprime a subarvore direita
+    }
   }
 
   public void insert(int value) {
@@ -105,14 +122,14 @@ public class BinaryTree {
 
   public void insert(Node node, int value) {
     if (this.isEmpty()) { // Se a raiz for nula, a árvore está vazia
-      this.root = new Node(value);  // Insere o nó na raiz
+      this.root = new Node(value); // Insere o nó na raiz
     } else { // Se a árvore não estiver vazia, insere o nó na posição correta
       if (value < node.getValue()) { // Verifica se o valor a ser inserido é menor que o do nó corrente da árvore, se
                                      // sim, vai para subarvore esquerda
         if (node.getLeftNode() != null) { // Se tiver elemento no nó esquerdo, continua a busca
-          insert(node.getLeftNode(), value);  // Insere o nó na subarvore esquerda
+          insert(node.getLeftNode(), value); // Insere o nó na subarvore esquerda
         } else { // Se o nó esquerdo for vazio, insere o novo nó em seu lugar
-          node.setLeftNode(new Node(value));  // Insere o nó na subarvore esquerda
+          node.setLeftNode(new Node(value)); // Insere o nó na subarvore esquerda
         }
       } else if (value > node.getValue()) { // Verifica se o valor a ser inserido é maior que o do nó corrente da
                                             // árvore,
@@ -132,7 +149,7 @@ public class BinaryTree {
 
   private Node search(Node node, int value) {
     if (node == null) { // Se o nó for nulo, a árvore está vazia
-      return null;  // Retorna nulo
+      return null; // Retorna nulo
     } else { // Se a árvore não estiver vazia, busca o nó na posição correta
       if (value < node.getValue()) { // Verifica se o valor a ser buscado é menor que o do nó corrente da árvore, se
                                      // sim,
@@ -141,9 +158,9 @@ public class BinaryTree {
       } else if (value > node.getValue()) { // Verifica se o valor a ser buscado é maior que o do nó corrente da
                                             // árvore,
                                             // se sim, vai para subarvore direita
-        return search(node.getRightNode(), value);  // Busca o nó na subarvore direita
-      } else {  // Se o valor for igual ao do nó corrente, retorna o nó
-        return node;  // Retorna o nó
+        return search(node.getRightNode(), value); // Busca o nó na subarvore direita
+      } else { // Se o valor for igual ao do nó corrente, retorna o nó
+        return node; // Retorna o nó
       }
     }
   }
@@ -154,48 +171,48 @@ public class BinaryTree {
 
   private Node remove(Node node, int value) throws Exception {
     if (this.isEmpty()) { // Se a raiz for nula, a árvore está vazia
-      throw new Exception("Árvore vazia");  // Lança uma exceção
-    } else {  // Se a árvore não estiver vazia, remove o nó na posição correta
-      if (value < node.getValue()) {  // Verifica se o valor a ser removido é menor que o do nó corrente da árvore, se
-                                      // sim, vai para subarvore esquerda
-        node.setLeftNode(remove(node.getLeftNode(), value));  // Remove o nó na subarvore esquerda
+      throw new Exception("Árvore vazia"); // Lança uma exceção
+    } else { // Se a árvore não estiver vazia, remove o nó na posição correta
+      if (value < node.getValue()) { // Verifica se o valor a ser removido é menor que o do nó corrente da árvore, se
+                                     // sim, vai para subarvore esquerda
+        node.setLeftNode(remove(node.getLeftNode(), value)); // Remove o nó na subarvore esquerda
       } else if (value > node.getValue()) { // Verifica se o valor a ser removido é maior que o do nó corrente da
-                                             // árvore, se sim, vai para subarvore direita
-        node.setRightNode(remove(node.getRightNode(), value));  // Remove o nó na subarvore direita
+                                            // árvore, se sim, vai para subarvore direita
+        node.setRightNode(remove(node.getRightNode(), value)); // Remove o nó na subarvore direita
       } else if (node.getLeftNode() != null && node.getRightNode() != null) { // Se o nó a ser removido tiver dois
-                                                                             // filhos
+                                                                              // filhos
         System.out.println("  Removeu Nó " + node.getValue()); // Imprime o valor do nó removido
         node.setValue(findMinNode(node.getRightNode()).getValue()); // Substitui o valor do nó removido pelo valor do
                                                                     // menor nó da subarvore direita
-        node.setRightNode(removeMinNode(node.getRightNode()));  // Remove o menor nó da subarvore direita
-      } else {  // Se o nó a ser removido tiver um filho ou nenhum
-        System.out.println("  Removeu Nó " + node.getValue());  // Imprime o valor do nó removido
+        node.setRightNode(removeMinNode(node.getRightNode())); // Remove o menor nó da subarvore direita
+      } else { // Se o nó a ser removido tiver um filho ou nenhum
+        System.out.println("  Removeu Nó " + node.getValue()); // Imprime o valor do nó removido
         node = (node.getLeftNode() != null) ? node.getLeftNode() : node.getRightNode(); // Substitui o nó removido pelo
-                                                                                       // filho dele
+                                                                                        // filho dele
       }
-      return node;  // Retorna o nó removido
+      return node; // Retorna o nó removido
     }
   }
 
   private Node removeMinNode(Node node) {
     if (node == null) { // Se o nó for nulo, a árvore está vazia
-      System.out.println("  ERRO ");  // Imprime uma mensagem de erro
-    } else if (node.getLeftNode() != null) {  // Se o nó esquerdo não for nulo, chama o método recursivamente
-      node.setLeftNode(removeMinNode(node.getLeftNode()));  // Remove o menor nó da subarvore esquerda
-      return node;  // Retorna o nó removido
-    } else {  // Se o nó esquerdo for nulo, o nó a ser removido é o menor nó da subarvore
+      System.out.println("  ERRO "); // Imprime uma mensagem de erro
+    } else if (node.getLeftNode() != null) { // Se o nó esquerdo não for nulo, chama o método recursivamente
+      node.setLeftNode(removeMinNode(node.getLeftNode())); // Remove o menor nó da subarvore esquerda
+      return node; // Retorna o nó removido
+    } else { // Se o nó esquerdo for nulo, o nó a ser removido é o menor nó da subarvore
       return node.getRightNode(); // Retorna o nó direito do nó removido
     }
-    return null;  // Retorna nulo
+    return null; // Retorna nulo
   }
 
   private Node findMinNode(Node node) {
     if (node != null) { // Se o nó não for nulo, a árvore não está vazia
-      while (node.getLeftNode() != null) {  // Enquanto o nó esquerdo não for nulo, continua a busca
-        node = node.getLeftNode();  // Vai para o nó esquerdo
+      while (node.getLeftNode() != null) { // Enquanto o nó esquerdo não for nulo, continua a busca
+        node = node.getLeftNode(); // Vai para o nó esquerdo
       }
     }
-    return node;  // Retorna o nó encontrado
+    return node; // Retorna o nó encontrado
   }
 }
 
@@ -222,7 +239,9 @@ class BinaryTreeTest {
     arvore.insert(14);
     arvore.insert(17);
     arvore.insert(20);
+    
     arvore.printTree();
+    
     System.out.println("Altura: " + arvore.getHeight());
     System.out.println("Quantidade de Nós: " + arvore.getNodeAmount());
     try {
@@ -233,5 +252,7 @@ class BinaryTreeTest {
     arvore.printTree();
     System.out.println("Altura: " + arvore.getHeight());
     System.out.println("Quantidade de Nós: " + arvore.getNodeAmount());
+
+    arvore.printSortedTree();
   }
 }
