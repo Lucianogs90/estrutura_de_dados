@@ -154,7 +154,23 @@ class Arvore {
 // Teste da classe Arvore
 class ArvoreBinariaApp {
   public static void main(String[] args) {
-    Scanner le = new Scanner(System.in);
-    Arvore arvore = new Arvore();
+    int valor;
+    Arvore minhaArvore = new Arvore();
+    Scanner entrada = new Scanner(System.in);
+    System.out.println("Entre com 10 valores inteiros: ");
+    for (int i = 0; i < 10; i++) {
+      valor = entrada.nextInt();
+      minhaArvore.inserir(valor);
+    }
+    minhaArvore.caminhar();
+    System.out.println("\n Entre com um valor a ser buscado: ");
+    valor = entrada.nextInt();
+    No encontrado = minhaArvore.buscar(valor);
+    if (encontrado != null)
+      System.out.println("Encontrado " + valor);
+    else
+      System.out.println("Não encontrado " + valor);
+    
+    entrada.close();
   }
 }

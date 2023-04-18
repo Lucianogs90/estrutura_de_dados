@@ -80,22 +80,40 @@ public class BinaryTree {
     return leftNodeAmount + rightNodeAmount + 1; // Retorna a soma das quantidades de nós das subárvores mais a raiz
   }
 
-  public void printTree() {
+  public void printPosTree() {
     if (this.isEmpty()) { // Se a raiz for nula, a árvore está vazia
       System.out.println("Árvore vazia"); // Imprime uma mensagem
     } else { // Se a árvore não estiver vazia
-      printTree(this.root); // Chama o método recursivo para imprimir a árvore
+      printPosTree(this.root); // Chama o método recursivo para imprimir a árvore
     }
   }
 
-  private void printTree(Node node) {
+  private void printPosTree(Node node) {
     if (node.getLeftNode() != null) { // Se o nó esquerdo não for nulo, chama o método recursivamente
-      printTree(node.getLeftNode()); // Imprime a subarvore esquerda
+      printPosTree(node.getLeftNode()); // Imprime a subarvore esquerda
     }
     if (node.getRightNode() != null) { // Se o nó direito não for nulo, chama o método recursivamente
-      printTree(node.getRightNode()); // Imprime a subarvore direita
+      printPosTree(node.getRightNode()); // Imprime a subarvore direita
     }
     System.out.println("Nó: " + node.getValue()); // Imprime o valor do nó
+  }
+
+  public void printPreTree() {
+    if (this.isEmpty()) { // Se a raiz for nula, a árvore está vazia
+      System.out.println("Árvore vazia"); // Imprime uma mensagem
+    } else { // Se a árvore não estiver vazia
+      printPreTree(this.root); // Chama o método recursivo para imprimir a árvore
+    }
+  }
+
+  private void printPreTree(Node node) {
+    System.out.println("Nó: " + node.getValue()); // Imprime o valor do nó
+    if (node.getLeftNode() != null) { // Se o nó esquerdo não for nulo, chama o método recursivamente
+      printPreTree(node.getLeftNode()); // Imprime a subarvore esquerda
+    }
+    if (node.getRightNode() != null) { // Se o nó direito não for nulo, chama o método recursivamente
+      printPreTree(node.getRightNode()); // Imprime a subarvore direita
+    }
   }
 
   public void printSortedTree() {
@@ -227,20 +245,22 @@ class BinaryTreeTest {
     arvore.insert(12);
     arvore.insert(18);
     arvore.insert(1);
+    arvore.insert(9);
     arvore.insert(4);
     arvore.insert(6);
     arvore.insert(8);
     arvore.insert(11);
     arvore.insert(13);
+    arvore.insert(20);
     arvore.insert(16);
     arvore.insert(19);
     arvore.insert(2);
-    arvore.insert(9);
+    arvore.insert(9); // Valor já existente
     arvore.insert(14);
     arvore.insert(17);
-    arvore.insert(20);
+    arvore.insert(20); // Valor já existente
     
-    arvore.printTree();
+    arvore.printPosTree();
     
     System.out.println("Altura: " + arvore.getHeight());
     System.out.println("Quantidade de Nós: " + arvore.getNodeAmount());
@@ -249,7 +269,7 @@ class BinaryTreeTest {
     } catch (Exception e) {
       e.printStackTrace();
     }
-    arvore.printTree();
+    arvore.printPosTree();
     System.out.println("Altura: " + arvore.getHeight());
     System.out.println("Quantidade de Nós: " + arvore.getNodeAmount());
 
